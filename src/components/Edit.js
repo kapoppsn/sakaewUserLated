@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
 
 class Edit extends Component {
 
