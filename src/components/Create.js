@@ -56,7 +56,8 @@ class Create extends Component {
 
     confirmAlert({
       title: 'Confirm to submit',
-    message: <text>หน้าที่: {this.state.page}<br />
+    message: <text>ชื่อ: {this.state.name}<br />
+    หน้าที่: {this.state.page}-{this.state.page2}<br />
     ขนาดกระดาษ: {this.state.size}<br />
     จำนวนหน้า: {this.state.amount}<br />
     สี: {this.state.color}<br />
@@ -162,6 +163,11 @@ class Create extends Component {
           </div>
           <div class="panel-body">
             {/* <h4><Link to="/history" class="btn btn-primary">ประวัติการสั่งทำ</Link></h4> */}
+
+            <div class="form-group">
+                <label for="name">ชื่อผู้รับเอกสาร:</label>
+                <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} required/>
+              </div>
 
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
