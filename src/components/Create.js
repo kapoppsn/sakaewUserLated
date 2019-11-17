@@ -144,6 +144,7 @@ class Create extends Component {
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
@@ -161,8 +162,6 @@ class Create extends Component {
           </div>
           <div class="panel-body">
             {/* <h4><Link to="/history" class="btn btn-primary">ประวัติการสั่งทำ</Link></h4> */}
-                <label>เลขที่คำสั่งซื้อ:</label>
-                <label>{this.state.rand}</label>
 
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
@@ -216,7 +215,6 @@ class Create extends Component {
                 <input type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="ex: 0812345678" required/>
               </div>
               <button type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange}  >Submit</button>
-              <h4><Link to="/">กลับ</Link></h4>
 
               </form>
           </div>
