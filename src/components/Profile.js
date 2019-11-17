@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
-import { Avatar } from 'antd';
+import { Avatar, Descriptions } from 'antd';
 import 'antd/dist/antd.css';
 
 class Profile extends Component{
@@ -32,6 +32,17 @@ class Profile extends Component{
           </header>
                 <div>
                 <Avatar size={100} icon="user" />
+                </div>
+                <div>
+                <Descriptions title="User Info">
+                    <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+                    <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+                    <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+                    <Descriptions.Item label="Remark">empty</Descriptions.Item>
+                    <Descriptions.Item label="Address">
+                    No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+                    </Descriptions.Item>
+                </Descriptions>
                 </div>
             </div>
         );
