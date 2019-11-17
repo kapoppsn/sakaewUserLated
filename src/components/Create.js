@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
-import DigitInput from 'react-input-digit';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import { FilePond, registerPlugin } from 'react-filepond';
+import 'filepond/dist/filepond.min.css';
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import { Button, Dropdown, Navbar,DropdownButton, FormControl, Nav } from 'react-bootstrap';
 
-
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 class Create extends Component {
 
   constructor() {
@@ -29,15 +32,19 @@ class Create extends Component {
       statusOrder: false,
       rand: Math.floor(Math.random() * 100000 + 1),
       checkPageAll: false,
-      checkPageNum: false
+      checkPageNum: false,
+      file: [{
+        source: 'localhost:3000/create',
+        options: {
+            type: 'local'
+        }
+    }]
     };
   }
 
-    togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
-  }
+  handleInit() {
+    console.log('FilePond instance has initialised', this.pond);
+}
 
   onChange = (e) => {
     const state = this.state
@@ -220,6 +227,20 @@ class Create extends Component {
                 <label for="tel">เบอร์ติดต่อ:</label>
                 <input type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="ex: 0812345678" required/>
               </div>
+              <div> 
+              <label for="file">อัพโหลดไฟล์เอกสาร:</label>
+                <FilePond ref={ref => this.pond = ref}
+                          files={this.state.files}
+                          allowMultiple={true}
+                          maxFiles={3} 
+                          server="/api"
+                          oninit={() => this.handleInit() }
+                          onupdatefiles={fileItems => {
+                              this.setState({
+                                  files: fileItems.map(fileItem => fileItem.file)
+                              });
+                          }}>
+                </FilePond></div>
               <button type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange}  >Submit</button>
 
               </form>
