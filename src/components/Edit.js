@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
+import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
 
 class Edit extends Component {
 
@@ -89,6 +90,22 @@ class Edit extends Component {
   render() {
     return (
       <div class="container">
+        <header>
+            <Navbar className="navAll">
+              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+                <Nav className="mr-auto">
+                  <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/profile">Profile</Nav.Link>
+                </Nav>
+              {/* <Navbar.Toggle />
+              <Navbar.Collapse className="justify-content-end">
+                <Navbar.Text>
+                  Signed in as: <a href="#login">Mark Otto</a>
+                </Navbar.Text>
+              </Navbar.Collapse> */}
+            </Navbar>
+          </header>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-name">
@@ -104,7 +121,7 @@ class Edit extends Component {
               </div>
               <div class="form-group">
                 <label for="page">หน้าที่:</label>
-                <input type="text" class="form-control" name="page" value={this.state.amount} onChange={this.onChange} placeholder="page" />
+                <input type="text" class="form-control" name="page" value={this.state.amount} onChange={this.onChange} placeholder="page" required />
               </div>
               <div class="form-group">
                 <label for="amount">จำนวนหน้า:</label>

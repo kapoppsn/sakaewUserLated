@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
-import { Button, Dropdown, Navbar } from 'react-bootstrap';
+import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
 import firebase from './Firebase';
 
 class App extends Component {
@@ -52,14 +52,19 @@ class App extends Component {
         </head>
         <body>
           <header>
-            <Navbar className="navHistory">
+          <Navbar className="navAll">
               <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
-              <Navbar.Toggle />
+                <Nav className="mr-auto">
+                  <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/profile">Profile</Nav.Link>
+                </Nav>
+              {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
                   Signed in as: <a href="#login">Mark Otto</a>
                 </Navbar.Text>
-              </Navbar.Collapse>
+              </Navbar.Collapse> */}
             </Navbar>
           </header>
           <div class="panel panel-default">

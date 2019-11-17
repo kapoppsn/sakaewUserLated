@@ -10,6 +10,7 @@ import Create from './components/Create';
 import Show from './components/Show';
 import Login from './components/Login';
 import LoginPage from './components/LoginPage';
+import Profile from './components/Profile';
 
 ReactDOM.render(
   <Router>
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path='/edit/:id' component={Edit} />
         <Route path='/create' component={Create} />
         <Route path='/show/:id' component={Show} />
+        <Route path='/profile' component={Profile} />
       </div>
   </Router>,
   document.getElementById('root')
