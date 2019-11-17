@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
-import './Create.css'
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
+import DigitInput from 'react-input-digit';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Button, Dropdown, Navbar,DropdownButton, FormControl, Nav } from 'react-bootstrap';
 
@@ -13,9 +13,12 @@ class Create extends Component {
   constructor() {
     super();
     this.ref = firebase.firestore().collection('boards');
+    this.toggleCheckPageNum = this.toggleCheckPageNum.bind(this);
+    this.toggleCheckAll = this.toggleCheckAll.bind(this);
     this.state = {
       name: '',
       page: '',
+      page2: '',
       amount: '',
       size: '',
       format: '',
@@ -25,7 +28,8 @@ class Create extends Component {
       tel:'',
       statusOrder: false,
       rand: Math.floor(Math.random() * 100000 + 1),
-      showPopup: false
+      checkPageAll: false,
+      checkPageNum: false
     };
   }
 
@@ -48,11 +52,11 @@ class Create extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, amount, size, format ,color, page, tel, address, statusOrder, rand} = this.state;
+    const { name, amount, size, format ,color, page, page2, tel, address, statusOrder, rand} = this.state;
 
     confirmAlert({
       title: 'Confirm to submit',
-    message: <text>หน้าที่: {this.state.amount}<br />
+    message: <text>หน้าที่: {this.state.page}<br />
     ขนาดกระดาษ: {this.state.size}<br />
     จำนวนหน้า: {this.state.amount}<br />
     สี: {this.state.color}<br />
@@ -65,6 +69,7 @@ class Create extends Component {
           onClick: ()=> this.ref.add({
             name,
             page,
+            page2,
             amount,
             size,
             format,
@@ -77,6 +82,7 @@ class Create extends Component {
             this.setState({
               name: '',
               page: '',
+              page2: '',
               amount: '',
               size: '',
               format: '',
@@ -98,14 +104,42 @@ class Create extends Component {
       ]
     });
   };
+  toggleCheckAll() {
+    this.setState({
+      checkPageAll: !this.state.checkPageAll
+  });
+  }
+  toggleCheckPageNum() {
+    this.setState({
+      checkPageNum: !this.state.checkPageNum
+  });
+  }
 
   render() {
-    const { name, amount, size, format, color, page, tel, address, statusOrder, rand} = this.state;
+
+    const { name, amount, size, format, color, page, page2, tel, address, statusOrder, rand} = this.state;
+    const checkPageAll = this.state.checkPageAll;
+    const checkPageNum = this.state.checkPageNum;
+    let checkPage;
+      if(checkPageAll==true && checkPageNum==false){
+       checkPage = <div><text>All</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
+<text>เลือกหน้า</text><input disabled type="checkbox" onClick={this.toggleCheckPageNum}/></div>
+      }
+      else if(checkPageAll==false && checkPageNum==true){
+        checkPage = <div><text>All</text><input disabled type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckPageNum}/>
+        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/><br /><text>From</text><input type="number" min='1' max='99' class="form-control" name="page" value={page} onChange={this.onChange} placeholder="1-99" required/>
+        <text>To</text><input type="number" min={page} max='99' class="form-control" name="page2" value={page2} onChange={this.onChange} placeholder="1-99" required/></div>
+      }
+      else{
+        checkPage = <div><text>All</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
+        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/></div>
+      }
+     
     return (
       <div class="container">
         <header>
             <Navbar className="navAll">
-              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+              <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
@@ -133,17 +167,23 @@ class Create extends Component {
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="page">หน้าที่:</label>
-                <input type="text" class="form-control" name="page" value={page} onChange={this.onChange} placeholder="All or 1-99" required/>
+                {checkPage}
               </div>
 
               <div class="form-group">
                 <label for="size">ขนาดกระดาษ:</label>
-                <input type="text" class="form-control" name="size" value={size} onChange={this.onChange} placeholder="size" required/>
+                <select name="size" value={size} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="size" required>
+                    <option value="">select</option >
+                    <option value="ขาว-ดำ">A3</option >
+                    <option value="สี">A4</option >
+                    <option value="สี">B4</option >
+                    <option value="สี">F14</option >
+                </select >
               </div>
 
               <div class="form-group">
                 <label for="amount">จำนวนหน้า:</label>
-                <input type="text" class="form-control" name="amount" value={amount} onChange={this.onChange} placeholder="amount" required/>
+                <input type="number" class="form-control" min='1' name="amount" value={amount} onChange={this.onChange} placeholder="" required/>
               </div>
 
               <div class="form-group">
@@ -173,9 +213,9 @@ class Create extends Component {
 
               <div class="form-group">
                 <label for="tel">เบอร์ติดต่อ:</label>
-                <input type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="tel" required/>
+                <input type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="ex: 0812345678" required/>
               </div>
-              <button type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange} >Submit</button>
+              <button type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange}  >Submit</button>
               <h4><Link to="/">กลับ</Link></h4>
 
               </form>
