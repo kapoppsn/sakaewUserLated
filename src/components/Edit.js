@@ -92,11 +92,12 @@ class Edit extends Component {
       <div class="container">
         <header>
             <Navbar className="navAll">
-              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+              <Navbar.Brand href="#home">Sakaew Xerox shot</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">

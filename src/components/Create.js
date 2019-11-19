@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { FilePond, registerPlugin } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
@@ -29,12 +30,15 @@ class Create extends Component {
       value: '',
       address: '',
       tel:'',
-      statusOrder: false,
+      statusOrder: '1',
+      datePay: '',
+      timePay: '',
+      costPay: '',
       rand: Math.floor(Math.random() * 100000 + 1),
       checkPageAll: false,
       checkPageNum: false,
       file: [{
-        source: 'localhost:3000/create',
+        source: 'localhost:3000',
         options: {
             type: 'local'
         }
@@ -59,7 +63,7 @@ class Create extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, amount, size, format ,color, page, page2, tel, address, statusOrder, rand} = this.state;
+    const { name, amount, size, format ,color, page, page2, tel, address, statusOrder, rand, datePay, timePay, costPay} = this.state;
 
     confirmAlert({
       title: 'Confirm to submit',
@@ -85,7 +89,10 @@ class Create extends Component {
             tel,
             address,
             statusOrder,
-            rand
+            rand,
+            datePay,
+            timePay,
+            costPay
           }).then((docRef) => {
             this.setState({
               name: '',
@@ -97,8 +104,11 @@ class Create extends Component {
               color: '',
               address: '',
               tel:'',
-              statusOrder: '',
-              rand: ''
+              statusOrder: '1',
+              rand: '',
+              datePay: '',
+              timePay: '',
+              costPay: '',
             });
             this.props.history.push("/history")
           })
@@ -125,7 +135,7 @@ class Create extends Component {
 
   render() {
 
-    const { name, amount, size, format, color, page, page2, tel, address, statusOrder, rand} = this.state;
+    const { name, amount, size, format, color, page, page2, tel, address, statusOrder, rand, datePay, timePay, costPay} = this.state;
     const checkPageAll = this.state.checkPageAll;
     const checkPageNum = this.state.checkPageNum;
     let checkPage;
@@ -135,8 +145,8 @@ class Create extends Component {
       }
       else if(checkPageAll==false && checkPageNum==true){
         checkPage = <div><text>All</text><input disabled type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckPageNum}/>
-        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/><br /><text>From</text><input type="number" min='1' max='99' class="form-control" name="page" value={page} onChange={this.onChange} placeholder="1-99" required/>
-        <text>To</text><input type="number" min={page} max='99' class="form-control" name="page2" value={page2} onChange={this.onChange} placeholder="1-99" required/></div>
+        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/><br /><text>From</text><input type="number" min='1' class="form-control" name="page" value={page} onChange={this.onChange}  required/>
+        <text>To</text><input type="number" min={page}  class="form-control" name="page2" value={page2} onChange={this.onChange}  required/></div>
       }
       else{
         checkPage = <div><text>All</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
@@ -186,10 +196,10 @@ class Create extends Component {
                 <label for="size">ขนาดกระดาษ:</label>
                 <select name="size" value={size} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="size" required>
                     <option value="">select</option >
-                    <option value="ขาว-ดำ">A3</option >
-                    <option value="สี">A4</option >
-                    <option value="สี">B4</option >
-                    <option value="สี">F14</option >
+                    <option value="A3">A3</option >
+                    <option value="A4">A4</option >
+                    <option value="B4">B4</option >
+                    <option value="F14">F14</option >
                 </select >
               </div>
 

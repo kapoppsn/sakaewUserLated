@@ -53,11 +53,12 @@ class App extends Component {
         <body>
           <header>
           <Navbar className="navAll">
-              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+              <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
@@ -74,7 +75,7 @@ class App extends Component {
             </h3>
             </div>
             <div class="panel-body">
-              <h4><Link to="/create">กลับ</Link></h4>
+              {/* <h4><Link to="/create">กลับ</Link></h4> */}
               <table class="table table-stripe">
                 <thead>
                   <tr>
