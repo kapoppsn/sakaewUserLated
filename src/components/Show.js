@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
+import '../css/history.css';
+import bgHistory from '../image/BGCreate2.png';
+
 class Show extends Component {
 
   constructor(props) {
@@ -38,15 +41,16 @@ class Show extends Component {
 
   render() {
     return (
+      <div class="bgHistory">
       <div class="container">
         <header>
-            <Navbar className="navAll">
-              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
-                <Nav className="mr-auto">
+            <Navbar id="narbar" className="navAll">
+              <Navbar.Brand href="#home" id="nbText1">สระแก้ว ก๊อปปี้แอนด์เซอร์วิส</Navbar.Brand>
+                <Nav id="nbText2" className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
                 </Nav>
+                <Nav.Link href="/profile" id="nbText3">Profile</Nav.Link>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
@@ -57,12 +61,17 @@ class Show extends Component {
           </header>
         <div class="panel panel-default">
           <div class="panel-heading">
-          <h4><Link to="/history">ประวัติการสั่งทำ</Link></h4>
-            <h3 class="panel-name">
+            <br></br>
+          <h4><Link to="/history" a class="ex3" id="backtoHis">ประวัติการสั่งทำ</Link></h4>
+          <br></br>
+            <h3 class="panel-name" id="fontOrder">
               {this.state.board.rand}
             </h3>
           </div>
-          <div class="panel-body">
+          <br></br>
+          <br></br>
+          <br></br>
+          <div class="panel-body" id="fontDetailOrder">
             <dl>
               <dt>ขนาดกระดาษ:</dt>
               <dd>{this.state.board.size}</dd>
@@ -75,11 +84,12 @@ class Show extends Component {
               <dt>รูปแบบการเข้าเล่ม:</dt>
               <dd>{this.state.board.format}</dd>
             </dl>
-            <Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>&nbsp;
-            <button onClick={this.delete.bind(this, this.state.key)} class="btn btn-danger">Delete</button>
+            <Link to={`/edit/${this.state.key}`} class="btn btn-success" id="edit"></Link>&nbsp;
+            <button onClick={this.delete.bind(this, this.state.key)} class="btn btn-danger" id="del"></button>
 
           </div>
         </div>
+      </div>
       </div>
     );
   }

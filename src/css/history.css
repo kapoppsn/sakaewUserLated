@@ -1,0 +1,81 @@
+.bgHistory{
+    background-image: url("../image/BGCreate.png");
+    height: 873px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#narbar{
+    background-color: #F3DBCF;
+    border-radius: 10%;
+}
+#nbText1{
+    font-family: FC Lamoon;
+    font-size: 2.9em;
+    font-weight: bold;
+    color: rgb(141, 101, 87);
+}
+#nbText2{
+    font-family: FC Lamoon;
+    font-size: 1.7em;
+    font-weight: normal;
+}
+#nbText3{
+    font-family: FC Lamoon;
+    font-size: 1.6em;
+    font-weight: normal;
+    color: rgb(138, 109, 117);
+}
+#backtoHis{
+    font-family: FC Lamoon;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #794E3E;
+}
+#fontOrder{
+    font-family: FC Lamoon;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: absolute;
+    left: 30%;
+    color: rgb(133, 74, 108);
+}
+#fontDetailOrder{
+    font-family: FC Lamoon;
+    font-size: 1.8em;
+    font-weight: bold;
+    position: absolute;
+    left: 30%;
+    color: #5C242A;
+}
+#edit{
+    background-image: url("../image/btnEdit.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 145%;
+    border-radius: 10%;
+    background-color: transparent;
+    padding: 25px 90px;
+    border: none;
+    position: center;
+    transform: translate(-40%, 5%);
+
+}
+#del{
+    background-image: url("../image/btnDel.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 145%;
+    border-radius: 10%;
+    background-color: transparent;
+    padding: 25px 90px;
+    border: none;
+    position: center;
+    transform: translate(75%, 5%);
+}
+a.ex3:hover, a.ex3:active {
+    background: #FFEED1;
+    border-radius: 10px;
+    text-decoration: underline;
+}

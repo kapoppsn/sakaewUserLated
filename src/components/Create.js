@@ -9,6 +9,9 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import { Button, Dropdown, Navbar,DropdownButton, FormControl, Nav } from 'react-bootstrap';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import '../css/create.css';
+import bgCreate from '../image/BGCreate2.png';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 class Create extends Component {
@@ -130,30 +133,31 @@ class Create extends Component {
     const checkPageNum = this.state.checkPageNum;
     let checkPage;
       if(checkPageAll==true && checkPageNum==false){
-       checkPage = <div><text>All</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
-<text>เลือกหน้า</text><input disabled type="checkbox" onClick={this.toggleCheckPageNum}/></div>
+       checkPage = <div><text>ทั้งหมด &nbsp;</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
+<text>&nbsp;เลือกหน้า &nbsp;</text><input disabled type="checkbox" onClick={this.toggleCheckPageNum}/></div>
       }
       else if(checkPageAll==false && checkPageNum==true){
-        checkPage = <div><text>All</text><input disabled type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckPageNum}/>
-        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/><br /><text>From</text><input type="number" min='1' max='99' class="form-control" name="page" value={page} onChange={this.onChange} placeholder="1-99" required/>
-        <text>To</text><input type="number" min={page} max='99' class="form-control" name="page2" value={page2} onChange={this.onChange} placeholder="1-99" required/></div>
+        checkPage = <div><text>ทั้งหมด &nbsp;</text><input disabled type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckPageNum}/>
+        <text>&nbsp;เลือกหน้า &nbsp;</text><input type="checkbox" onClick={this.toggleCheckPageNum}/><br /><text>จาก:</text><input type="number" min='1' max='99' class="form-control" name="page" value={page} onChange={this.onChange} placeholder="1-99" required/>
+        <text>ถึง:</text><input type="number" min={page} max='99' class="form-control" name="page2" value={page2} onChange={this.onChange} placeholder="1-99" required/></div>
       }
       else{
-        checkPage = <div><text>All</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
-        <text>เลือกหน้า</text><input type="checkbox" onClick={this.toggleCheckPageNum}/></div>
+        checkPage = <div><text>ทั้งหมด &nbsp;</text><input type="checkbox" name="page" value="All" onChange={this.onChange} onClick={this.toggleCheckAll}/>
+        <text>&nbsp;เลือกหน้า &nbsp;</text><input type="checkbox" onClick={this.toggleCheckPageNum}/></div>
       }
      
     return (
+      <div class="bgCreate">
       <div class="container">
         <header>
-            <Navbar className="navAll">
-              <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
-                <Nav className="mr-auto">
+            <Navbar id="narbar" className="navAll">
+              <Navbar.Brand href="#home" id="nbText1">สระแก้ว ก๊อปปี้แอนด์เซอร์วิส</Navbar.Brand>
+                <Nav id="nbText2" className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
                   <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
-                  <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
+                <Nav.Link href="/profile" id="nbText3">Profile</Nav.Link>
+                <Nav.Link href="/" id="nbText3">logout</Nav.Link>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
@@ -162,9 +166,11 @@ class Create extends Component {
               </Navbar.Collapse> */}
             </Navbar>
           </header>
+        <br></br>
+        
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-name">
+            <h3 id="orderHead" class="panel-name">
               รายการสั่งทำ
             </h3>
           </div>
@@ -172,45 +178,46 @@ class Create extends Component {
             {/* <h4><Link to="/history" class="btn btn-primary">ประวัติการสั่งทำ</Link></h4> */}
 
             <div class="form-group">
-                <label for="name">ชื่อผู้รับเอกสาร:</label>
-                <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} required/>
+                <label for="name" id="font">ชื่อผู้รับเอกสาร:</label>
+                <input id="focus" id="sizeName" type="text" class="form-control" name="name" value={name} onChange={this.onChange} required/>
               </div>
 
             <form onSubmit={this.onSubmit}>
-              <div class="form-group">
-                <label for="page">หน้าที่:</label>
+              <div id="font" class="form-group">
+                <label for="page">หน้าที่ต้องการ:</label>
                 {checkPage}
               </div>
 
-              <div class="form-group">
-                <label for="size">ขนาดกระดาษ:</label>
-                <select name="size" value={size} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="size" required>
+              <div id="font" class="form-group">
+                <label for="size">ขนาดกระดาษ: &nbsp;</label>
+                <select name="size" id="box" value={size} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="size" required>
                     <option value="">select</option >
-                    <option value="ขาว-ดำ">A3</option >
-                    <option value="สี">A4</option >
-                    <option value="สี">B4</option >
-                    <option value="สี">F14</option >
+                    <option value="A3">A3</option >
+                    <option value="A4">A4</option >
+                    <option value="B4">B4</option >
+                    <option value="F14">F14</option >
                 </select >
               </div>
 
               <div class="form-group">
-                <label for="amount">จำนวนหน้า:</label>
-                <input type="number" class="form-control" min='1' name="amount" value={amount} onChange={this.onChange} placeholder="" required/>
+                <label for="amount" id="font">จำนวนสำเนา:</label>
+                <input id="focus" id="sizeCopy" type="number" class="form-control" min='1' name="amount" value={amount} onChange={this.onChange} placeholder="ex: 1" required/>
               </div>
 
-              <div class="form-group">
-              <label for="color">สี: </label>
-                  <select name="color" value={color} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="color" required>
+              <div id="font" class="form-group">
+              <label for="color">สี: &nbsp;</label>
+                  <select name="color" id="box" value={color} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="color" required>
                     <option value="">select</option >
                     <option value="ขาว-ดำ">ขาว-ดำ</option >
                     <option value="สี">สี</option >
                 </select >
             </div>
 
-              <div class="form-group">
-              <label for="format">รูปแบบการเข้าเล่ม: </label>
-                  <select name="format" value={format} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="format" required>
+              <div id="font" class="form-group">
+              <label for="format">รูปแบบการเข้าเล่ม: &nbsp;</label>
+                  <select id="box" name="format" value={format} variant="secondary" onChange={this.handleChange} onChange={this.onChange} placeholder="format" required>
                     <option value="">select</option >
+                    <option value="เย็บมุม">เย็บมุม</option >
                     <option value="สันกระดูกงู">สันกระดูกงู</option >
                     <option value="สันเกลียว">สันเกลียว</option >
                     <option value="ผลงาน">ผลงาน</option >
@@ -219,16 +226,16 @@ class Create extends Component {
             </div>
               
             <div class="form-group">
-                <label for="address">ที่อยู่:</label>
-                <input type="text" class="form-control" name="address" value={address} onChange={this.onChange} placeholder="address" required/>
+                <label id="font" for="address">ที่อยู่:</label>
+                <input id="focus" id="sizeAddr" type="text" class="form-control" name="address" value={address} onChange={this.onChange} placeholder="ex: 12/345" required/>
               </div>
 
               <div class="form-group">
-                <label for="tel">เบอร์ติดต่อ:</label>
-                <input type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="ex: 0812345678" required/>
+                <label id="font" for="tel">เบอร์ติดต่อ:</label>
+                <input id="focus" id="sizeTel" type="tel" class="form-control" name="tel" value={tel} onChange={this.onChange} placeholder="ex: 0812345678" required/>
               </div>
               <div> 
-              <label for="file">อัพโหลดไฟล์เอกสาร:</label>
+              <label id="font" for="file">อัพโหลดไฟล์เอกสาร:</label>
                 <FilePond ref={ref => this.pond = ref}
                           files={this.state.files}
                           allowMultiple={true}
@@ -241,11 +248,12 @@ class Create extends Component {
                               });
                           }}>
                 </FilePond></div>
-              <button type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange}  >Submit</button>
+              <button id="btnSubmit" type="submit" class="btn btn-success" name="statusOrder" value={statusOrder} onChange={this.onChange}  ></button>
 
               </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }

@@ -1,0 +1,85 @@
+.bgCreate{
+    background-image: url("../image/BGCreate2.png");
+    height: fit-content;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#narbar{
+    background-color: #F3DBCF;
+    border-radius: 10%;
+}
+#nbText1{
+    font-family: FC Lamoon;
+    font-size: 2.9em;
+    font-weight: bold;
+    color: rgb(141, 101, 87);
+}
+#nbText2{
+    font-family: FC Lamoon;
+    font-size: 1.7em;
+    font-weight: normal;
+}
+#nbText3{
+    font-family: FC Lamoon;
+    font-size: 1.6em;
+    font-weight: normal;
+    color: rgb(138, 109, 117);
+}
+#orderHead{
+    font-family: FC Lamoon;
+    font-size: 2.2em;
+}
+#font{
+    font-family: FC Lamoon;
+    font-size: 1.55em;
+}
+#box{
+    border-radius: 15px;
+}
+input[type=text]:focus{
+    border: none;
+    box-shadow: 0 0 0 2.4px #CFBCA6;
+}
+input[type=number]:focus{
+    border: none;
+    box-shadow: 0 0 0 2.4px #CFBCA6;
+}
+input[type=color]:focus{
+    border: none;
+    box-shadow: 0 0 0 2.4px #CFBCA6;
+}
+input[type=tel]:focus{
+    border: none;
+    box-shadow: 0 0 0 2.4px #CFBCA6;
+}
+#btnSubmit{
+    background-image: url("../image/BTconfirm2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 145%;
+    border-radius: 10%;
+    background-color: transparent;
+    padding: 35px 122px;
+    border: none;
+    position: center;
+    transform: translate(178%, 5%);
+    box-shadow: 0 0 0;
+}
+#sizeName{
+    border-radius: 18px;
+    width: 40%;
+}
+#sizeCopy{
+    border-radius: 18px;
+    width: 12%;
+}
+#sizeAddr{
+    border-radius: 18px;
+    width: 70%;
+}
+#sizeTel{
+    border-radius: 18px;
+    width: 30%;
+}
