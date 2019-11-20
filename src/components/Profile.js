@@ -19,7 +19,7 @@ class Profile extends Component{
               <Navbar.Brand href="#home">Sakaew Xerox sho</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/historyonly">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/">logout</Nav.Link>
                 </Nav>

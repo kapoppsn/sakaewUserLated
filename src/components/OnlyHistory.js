@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+import '../App.css';
 import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
-import firebase from './Firebase';
+import firebase from '../Firebase';
 
-class App extends Component {
+class OnlyHistory extends Component {
   constructor(props) {
     super(props);
     this.ref = firebase.firestore().collection('boards');
@@ -56,7 +56,7 @@ class App extends Component {
               <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/historyonly">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
@@ -92,7 +92,7 @@ class App extends Component {
             <Dropdown.Menu>
               {this.state.boards.map(board =>
                     <tr>
-                      <td><Dropdown.Item href={`/upreceipt/${board.key}`}>{board.rand}</Dropdown.Item></td>
+                      <td><Dropdown.Item href={`/show/${board.key}`}>{board.rand}</Dropdown.Item></td>
                     </tr>
                 )}
 
@@ -105,4 +105,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default OnlyHistory;

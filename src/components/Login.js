@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import firebase, { auth, provider } from '../Firebase';
 import { Button, Dropdown, Navbar } from 'react-bootstrap';
-//import bglogin from './image/bglogin.png';
-//import './login.css';
+import '../css/login.css';
+import bg from '../image/BGLogin2.png';
 
 const LoginButton = (props) => {
   //<Link to='/SellAndBuy'><button onClick={props.onClick}>Sign in</button></Link>
   return (
-    <Button class="btn" onClick={props.onClick}>Sign in With Google Account</Button>
+    <Button id='LoginButton' class="btn" onClick={props.onClick}></Button>
   )
 }
 

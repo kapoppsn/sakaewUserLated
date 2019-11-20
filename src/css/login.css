@@ -1,0 +1,21 @@
+.bg{
+    background-image: url("../image/BGLogin2.png");
+    height: 863px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#LoginButton{
+    background-image: url("../image/BTLogin.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 145%;
+    border-radius: 10%;
+    background-color: transparent;
+    padding: 35px 130px;
+    border: none;
+    position: center;
+    transform: translate(162.5%, 870%);
+    -ms-transform: translate(-50%, -50%);
+}

@@ -12,13 +12,24 @@ class Edit extends Component {
       key: '',
       name: '',
       page: '',
-      size: '',
+      page2: '',
       amount: '',
-      color: '',
+      size: '',
       format: '',
+      color: '',
+      value: '',
       address: '',
       tel:'',
-      rand: ''
+      statusOrder: '',
+      datePay: '',
+      timePay: '',
+      costPay: '',
+      rand: Math.floor(Math.random() * 100000 + 1),
+      checkPageAll: false,
+      checkPageNum: false,
+      image: null,
+      url: '',
+      progress: 0,
     };
   }
 
@@ -37,7 +48,10 @@ class Edit extends Component {
           format: board.format,
           tel: board.tel,
           address: board.address,
-          rand: board.rand
+          rand: board.rand,
+          datePay: board.datePay,
+          timePay: board.timePay,
+          costPay: board.costPay,
         });
       } else {
         console.log("No such document!");
@@ -54,7 +68,7 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, size, amount, format, color, page, tel, address, rand } = this.state;
+    const { name, size, amount, format, color, page, tel, address, rand, datePay, timePay, costPay} = this.state;
 
     const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
     updateRef.set({
@@ -66,7 +80,10 @@ class Edit extends Component {
       format,
       tel,
       address,
-      rand
+      rand,
+      datePay,
+      timePay,
+      costPay,
     }).then((docRef) => {
       this.setState({
         key: '',
@@ -78,7 +95,10 @@ class Edit extends Component {
         format: '',
         address: '',
         tel:'',
-        rand: ''
+        rand: '',
+        datePay: '',
+        timePay: '',
+        costPay: '',
       });
       this.props.history.push("/show/"+this.props.match.params.id)
     })
@@ -95,7 +115,7 @@ class Edit extends Component {
               <Navbar.Brand href="#home">Sakaew Xerox shot</Navbar.Brand>
                 <Nav className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/historyonly">ประวัติการสั่งทำ</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/">logout</Nav.Link>
                 </Nav>
