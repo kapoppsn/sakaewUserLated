@@ -1,0 +1,33 @@
+.bgHis{
+    background-image: url("../image/bgorder.png");
+    height: 873px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+}
+#his{
+    font-family: FC Lamoon;
+    font-size: 2.5em;
+    font-weight: normal;
+    color: rgb(138, 109, 117);
+    position: center;
+    transform: translate(42%, 100%);
+    -webkit-transform: translate(42%, 100%);
+    -ms-transform: translate(-50%, -50%);
+}
+#orderButton{
+    position: center;
+    transform: translate(310%, 170%);
+    -webkit-transform: translate(310%, 170%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: burlywood;
+    font-size: large;
+    padding: 20px;
+    border: none;
+    border-radius: 5pc;
+
+}

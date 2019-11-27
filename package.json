@@ -17,6 +17,7 @@
     "react-dropdown-select": "^3.3.2",
     "react-filepond": "^7.0.1",
     "react-input-digit": "^0.1.3",
+    "react-number-format": "^4.3.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },

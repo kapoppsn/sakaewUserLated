@@ -5,6 +5,9 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
 }
 #LoginButton{
     background-image: url("../image/BTLogin.png");
@@ -17,5 +20,12 @@
     border: none;
     position: center;
     transform: translate(162.5%, 870%);
+    -webkit-transform: translate(162.5%, 870%);
     -ms-transform: translate(-50%, -50%);
+    display: inline-block;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+}
+#LoginButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(90, 39, 105, 0.404),0 17px 50px 0 rgba(78, 93, 99, 0.19);
 }

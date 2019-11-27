@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
 import firebase from '../Firebase';
+import '../css/hisid.css';
+import bgHis from '../image/bgorder.png';
 
 class OnlyHistory extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class OnlyHistory extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const boards = [];
     querySnapshot.forEach((doc) => {
-      const { name, amount, size, format, color, page, rand } = doc.data();
+      const { name, amount, size, format, color, page, rand ,statusOrder} = doc.data();
       boards.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -27,7 +29,8 @@ class OnlyHistory extends Component {
         size,
         color,
         format,
-        rand
+        rand,
+        statusOrder
       });
     });
     this.setState({
@@ -41,6 +44,7 @@ class OnlyHistory extends Component {
 
   render() {
     return (
+      <div class="bgOrder">
       <div class="container">
         <head>
           <link
@@ -52,14 +56,15 @@ class OnlyHistory extends Component {
         </head>
         <body>
           <header>
-          <Navbar className="navAll">
-              <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
-                <Nav className="mr-auto">
+          <Navbar id="narbar" className="navAll">
+              <Navbar.Brand href="#home" id="nbText1">สระแก้ว ก๊อปปี้แอนด์เซอร์วิส</Navbar.Brand>
+                <Nav id="nbText2" className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
+                  <Nav.Link href="/history">ส่งหลักฐานการโอนเงิน</Nav.Link>
                   <Nav.Link href="/historyonly">ประวัติการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
-                  <Nav.Link href="/">logout</Nav.Link>
-                </Nav>
+                  </Nav>
+                  {/* <Nav.Link href="/profile" id="nbText3">Profile</Nav.Link> */}
+                  <Nav.Link href="/" id="nbText3">logout</Nav.Link>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
@@ -70,7 +75,7 @@ class OnlyHistory extends Component {
           </header>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-name">
+              <h3 id="his" class="panel-name">
                 ประวัติการสั่งทำ
             </h3>
             </div>
@@ -86,7 +91,7 @@ class OnlyHistory extends Component {
             </div>
           </div>
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" id="orderButton">
               เลขที่คำสั่งซื้อ
              </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -100,7 +105,7 @@ class OnlyHistory extends Component {
           </Dropdown>
         </body>
       </div>
-
+      </div>
     );
   }
 }

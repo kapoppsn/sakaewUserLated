@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import { Button, Dropdown, Navbar, Nav } from 'react-bootstrap';
 import firebase from './Firebase';
+import './css/orderid.css';
+import bgOrder from './image/bgorder.png';
+import NumberFormat from 'react-number-format';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +20,7 @@ class App extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const boards = [];
     querySnapshot.forEach((doc) => {
-      const { name, amount, size, format, color, page, rand } = doc.data();
+      const { name, amount, size, format, color, page, rand,url2 } = doc.data();
       boards.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -27,7 +30,8 @@ class App extends Component {
         size,
         color,
         format,
-        rand
+        rand,
+        url2
       });
     });
     this.setState({
@@ -40,7 +44,18 @@ class App extends Component {
   }
 
   render() {
+    let notPay;
+
+    notPay = this.state.boards.map(board =>{
+      if(board.url2=="")
+        return <tr>
+        <td><Dropdown.Item href={`/upreceipt/${board.key}`}>{board.rand}</Dropdown.Item></td>
+      </tr>
+    }
+      );
+
     return (
+      <div class="bgOrder">
       <div class="container">
         <head>
           <link
@@ -52,14 +67,14 @@ class App extends Component {
         </head>
         <body>
           <header>
-          <Navbar className="navAll">
-              <Navbar.Brand href="#home">Sakaew Xerox shop</Navbar.Brand>
-                <Nav className="mr-auto">
+          <Navbar id="narbar" className="navAll">
+              <Navbar.Brand href="#home" id="nbText1">สระแก้ว ก๊อปปี้แอนด์เซอร์วิส</Navbar.Brand>
+                <Nav id="nbText2" className="mr-auto">
                   <Nav.Link href="/create">สร้างรายการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/history">ประวัติการสั่งทำ</Nav.Link>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
-                  <Nav.Link href="/">logout</Nav.Link>
-                </Nav>
+                  <Nav.Link href="/history">ส่งหลักฐานการโอนเงิน</Nav.Link>
+                  <Nav.Link href="/historyonly">ประวัติการสั่งทำ</Nav.Link>
+                  </Nav>
+                  <Nav.Link href="/" id="nbText3">logout</Nav.Link>
               {/* <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
@@ -70,8 +85,8 @@ class App extends Component {
           </header>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-name">
-                ประวัติการสั่งทำ
+              <h3 id="order" class="panel-name">
+                เลือกเลขที่คำสั่งซื้อที่ต้องการชำระเงิน
             </h3>
             </div>
             <div class="panel-body">
@@ -86,21 +101,21 @@ class App extends Component {
             </div>
           </div>
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" id="orderButton">
               เลขที่คำสั่งซื้อ
              </Dropdown.Toggle>
             <Dropdown.Menu>
-              {this.state.boards.map(board =>
+              {/* {this.state.boards.map(board =>
                     <tr>
-                      <td><Dropdown.Item href={`/upreceipt/${board.key}`}>{board.rand}</Dropdown.Item></td>
+                      <td><Dropdown.Item href={`/upreceipt/${board.key}`}>{board.notPay}</Dropdown.Item></td>
                     </tr>
-                )}
-
+                )} */}
+                {notPay}
             </Dropdown.Menu>
           </Dropdown>
         </body>
       </div>
-
+      </div>
     );
   }
 }
